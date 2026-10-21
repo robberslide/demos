@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo: tienda con pago en línea</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="logo-icono.svg" type="image/svg+xml">
+<script>
+  /* ============================================================
+     PEGA AQUÍ el link de tu tienda con Mercado Pago en Vercel,
+     por ejemplo: 'https://tienda-mercadopago-eliot.vercel.app'
+     Mientras esté vacío, esta página muestra un aviso.
+     ============================================================ */
+  const URL_DEMO = '';
+  if (/^https:\/\//.test(URL_DEMO)) location.replace(URL_DEMO);
+</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px;background:#F5F4EF;font-family:'IBM Plex Sans',sans-serif;color:#0B1020}
+.caja{max-width:460px;width:100%;background:#fff;border:1px solid #E6E4DC;border-radius:24px;padding:32px 24px;display:flex;flex-direction:column;gap:16px;text-align:center}
+h1{margin:0;font-family:'Space Grotesk',sans-serif;font-size:1.7rem;letter-spacing:-.01em}
+p{margin:0;color:#3A3F52;line-height:1.6}
+a.btn{display:flex;align-items:center;justify-content:center;min-height:50px;border-radius:12px;font-weight:600;text-decoration:none}
+.primario{background:#2B3FD6;color:#fff}
+.secundario{border:1.5px solid #0B1020;color:#0B1020}
+</style>
+</head>
+<body>
+<main class="caja">
+  <h1>Demo de pago en línea</h1>
+  <p>Esta demo de tienda con pago por Mercado Pago se está publicando. Mientras tanto, puedes probar la tienda con carrito y pedidos por WhatsApp.</p>
+  <a class="btn primario" href="tienda.html">Probar la tienda con carrito</a>
+  <a class="btn secundario" href="index.html">Volver</a>
+</main>
+</body>
+</html>

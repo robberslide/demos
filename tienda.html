@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brote — Plantas de interior</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Página de ejemplo hecha por Eliot Ibacache: tienda con carrito y pedidos por WhatsApp.">
+<link rel="icon" href="logo-icono.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --verde:#1F3A2E; --verde-2:#2D5241; --crema:#F4F1EA; --papel:#FFFFFF;
+  --tierra:#B4572F; --tierra-2:#93441F; --texto:#1B1F1C; --suave:#55605A; --linea:#E2DDD2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Figtree',sans-serif;color:var(--texto);background:var(--crema)}
+a{color:var(--tierra-2)}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.demo{display:block;background:#0B1020;color:#F5F4EF;text-decoration:none;text-align:center;font-weight:600;font-size:.9rem;padding:12px 16px}
+.demo:hover{color:#fff}
+
+header.top{position:sticky;top:0;z-index:20;background:rgba(244,241,234,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.marca{font-family:'Fraunces',serif;font-weight:700;font-size:1.6rem;color:var(--verde);text-decoration:none;letter-spacing:-.01em}
+.marca span{color:var(--tierra)}
+.btn-carro{display:inline-flex;align-items:center;gap:10px;background:var(--verde);color:#fff;border:0;border-radius:999px;padding:0 18px;min-height:46px;font-weight:600}
+.btn-carro:hover{background:var(--verde-2)}
+.contador{background:var(--tierra);color:#fff;border-radius:999px;min-width:24px;height:24px;padding:0 7px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem}
+
+.hero{padding:44px 0 56px}
+.hero .wrap{display:flex;flex-wrap:wrap;gap:40px;align-items:center}
+.hero-txt{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.etiqueta{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;color:var(--tierra-2)}
+h1{margin:0;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.4rem,5vw,4rem);line-height:1.02;color:var(--verde);letter-spacing:-.02em}
+.hero p{margin:0;font-size:1.12rem;line-height:1.6;color:var(--suave);max-width:34rem}
+.hero-img{flex:1 1 360px;min-width:0;height:400px;border-radius:24px;object-fit:cover;width:100%;background:#CFD8CF}
+.ventajas{display:flex;flex-wrap:wrap;gap:10px 22px;font-weight:600;font-size:.95rem;color:var(--verde)}
+.cta{align-self:flex-start;display:inline-flex;align-items:center;min-height:48px;padding:0 26px;border-radius:999px;background:var(--tierra);color:#fff;text-decoration:none;font-weight:700}
+.cta:hover{background:var(--tierra-2);color:#fff}
+
+#catalogo{padding:56px 0 72px;background:var(--papel);border-top:1px solid var(--linea)}
+.cat-head{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end;margin-bottom:24px}
+h2{margin:0;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.9rem,3.4vw,2.5rem);color:var(--verde)}
+.filtros{display:flex;flex-wrap:wrap;gap:8px}
+.filtro{border:1.5px solid var(--linea);background:var(--papel);color:var(--texto);border-radius:999px;padding:0 16px;min-height:44px;font-weight:600}
+.filtro[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);color:#fff}
+.grilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:20px}
+.prod{display:flex;flex-direction:column;border:1px solid var(--linea);border-radius:18px;overflow:hidden;background:var(--papel)}
+.prod img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#E5E9E3}
+.prod-cuerpo{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.prod-cat{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+.prod h3{margin:0;font-size:1.1rem}
+.prod p{margin:0;color:var(--suave);line-height:1.5;font-size:.95rem;flex:1}
+.prod-pie{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:6px}
+.precio{font-family:'Fraunces',serif;font-weight:700;font-size:1.3rem;color:var(--verde)}
+.agregar{border:0;border-radius:999px;background:var(--verde);color:#fff;padding:0 18px;min-height:44px;font-weight:600}
+.agregar:hover{background:var(--verde-2)}
+.agregar.ok{background:var(--tierra)}
+
+.info{padding:64px 0}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px}
+.info-item{border-top:2px solid var(--verde);padding-top:14px}
+.info-item strong{display:block;font-size:1.05rem;margin-bottom:6px;color:var(--verde)}
+.info-item span{color:var(--suave);line-height:1.55}
+footer{background:var(--verde);color:#D5DED7;text-align:center;padding:24px 20px;font-size:.9rem}
+footer a{color:#fff}
+
+/* Carrito */
+.velo{position:fixed;inset:0;background:rgba(15,25,20,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.velo.abierto{opacity:1;pointer-events:auto}
+.carro{position:fixed;top:0;right:0;height:100%;width:min(440px,100%);background:var(--papel);z-index:50;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;transform:translateX(100%);transition:transform .25s ease;box-shadow:-20px 0 50px rgba(0,0,0,.15)}
+.carro.abierto{transform:none}
+.carro-head{position:sticky;top:0;z-index:2;background:var(--papel);display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--linea)}
+.carro-head h2{font-size:1.5rem}
+.cerrar{border:0;background:transparent;width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--texto)}
+.cerrar:hover{background:var(--crema)}
+.carro-items{flex:none;padding:8px 20px}
+.carro-pie{flex:1 0 auto}
+.enviar-zona{position:sticky;bottom:0;margin:0 -20px -20px;padding:12px 20px 20px;background:var(--crema);border-top:1px solid var(--linea)}
+.vacio{color:var(--suave);text-align:center;padding:48px 8px;line-height:1.6}
+.item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--linea)}
+.item img{width:72px;height:72px;border-radius:12px;object-fit:cover;flex:0 0 auto;background:#E5E9E3}
+.item-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.item-nombre{font-weight:600}
+.item-fila{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cant{display:inline-flex;align-items:center;border:1.5px solid var(--linea);border-radius:999px}
+.cant button{border:0;background:transparent;width:40px;height:40px;font-size:1.15rem;font-weight:700;color:var(--verde)}
+.cant span{min-width:24px;text-align:center;font-weight:600}
+.quitar{border:0;background:transparent;color:var(--suave);text-decoration:underline;padding:6px 0;font-size:.88rem}
+.carro-pie{border-top:1px solid var(--linea);padding:16px 20px 20px;display:flex;flex-direction:column;gap:12px;background:var(--crema)}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo label,.leyenda{font-weight:600;font-size:.92rem}
+.campo input,.campo textarea{font:inherit;border:1.5px solid var(--linea);border-radius:12px;padding:10px 12px;background:#fff;min-height:44px}
+.campo input:focus,.campo textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid #8DB59F;outline-offset:2px}
+.entrega{display:flex;gap:8px;flex-wrap:wrap}
+.entrega label{flex:1 1 140px;display:flex;align-items:center;gap:8px;border:1.5px solid var(--linea);border-radius:12px;padding:10px 12px;background:#fff;min-height:44px;font-size:.92rem}
+.totales{display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+.totales div{display:flex;justify-content:space-between}
+.totales .total{font-weight:700;font-size:1.15rem;color:var(--verde)}
+.nota{font-size:.82rem;color:var(--suave)}
+.enviar{border:0;border-radius:14px;background:#1E8449;color:#fff;min-height:52px;font-weight:700;font-size:1.02rem}
+.enviar:hover{background:#176B3A}
+.enviar:disabled{background:#9DB3A6;cursor:not-allowed}
+.error{color:#A3261B;font-size:.88rem;min-height:1em}
+.oculto{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){.carro,.velo{transition:none}}
+</style>
+</head>
+<body>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN DE LA TIENDA — edita solo esta parte
+   ============================================================ */
+const TIENDA = {
+  nombre: 'Brote',
+  whatsapp: '56964650357',          // número que recibe los pedidos, sin + ni espacios
+  despacho: 3990,                    // costo de despacho en pesos
+  despachoGratisDesde: 40000,        // subtotal desde el cual el despacho es gratis (0 = nunca)
+  zonaDespacho: 'Santiago urbano',
+  retiro: 'Ñuñoa, Santiago',         // dónde se retira (o '' si no hay retiro)
+  demo: true                         // en true, el mensaje dice que es un pedido de prueba
+};
+
+const PRODUCTOS = [
+  // { id, nombre, categoria, precio, foto, descripcion }
+  { id: 'p1',  nombre: 'Planta verde mediana',     categoria: 'Plantas',   precio: 24990, foto: 'https://images.unsplash.com/photo-1609061801093-1b7a8a574c69', descripcion: 'Hojas grandes, ideal para living. Incluye macetero blanco.' },
+  { id: 'p2',  nombre: 'Dieffenbachia',            categoria: 'Plantas',   precio: 14990, foto: 'https://images.unsplash.com/photo-1562351757-66f3589f30cf', descripcion: 'Follaje manchado, crece bien con luz indirecta.' },
+  { id: 'p3',  nombre: 'Sansevieria',              categoria: 'Plantas',   precio: 19990, foto: 'https://images.unsplash.com/photo-1616961162823-aeba510620c6', descripcion: 'Casi indestructible. Riego cada 2 a 3 semanas.' },
+  { id: 'p4',  nombre: 'Sansevieria con cesta',    categoria: 'Plantas',   precio: 22990, foto: 'https://images.unsplash.com/photo-1616961002389-504228edfcb7', descripcion: 'La misma resistencia, con cesta tejida a mano.' },
+  { id: 'p5',  nombre: 'Planta de escritorio',     categoria: 'Plantas',   precio: 8990,  foto: 'https://images.unsplash.com/photo-1673349333857-7c65fd51033a', descripcion: 'Pequeña y fácil de cuidar, para tu mesa de trabajo.' },
+  { id: 'p6',  nombre: 'Árbol de interior grande', categoria: 'Plantas',   precio: 34990, foto: 'https://images.unsplash.com/photo-1615766254664-ccacf4203a94', descripcion: 'Más de 1 metro de alto. Despacho con cuidado especial.' },
+  { id: 'm1',  nombre: 'Set de 3 maceteros de greda', categoria: 'Maceteros', precio: 12990, foto: 'https://images.unsplash.com/photo-1510828561531-05a3388f6d3d', descripcion: 'Tres tamaños, con orificio de drenaje.' },
+  { id: 'm2',  nombre: 'Macetero de greda grande', categoria: 'Maceteros', precio: 9990,  foto: 'https://images.unsplash.com/photo-1604264726154-26480e76f4e1', descripcion: 'Para plantas medianas y árboles de interior.' },
+  { id: 'm3',  nombre: 'Jarrones de cerámica blanca', categoria: 'Maceteros', precio: 15990, foto: 'https://images.unsplash.com/photo-1520408222757-6f9f95d87d5d', descripcion: 'Par de jarrones decorativos, acabado mate.' },
+  { id: 'c1',  nombre: 'Regadera metálica',        categoria: 'Cuidado',   precio: 11990, foto: 'https://images.unsplash.com/photo-1627730327274-3a18e24d3362', descripcion: 'Acero inoxidable, 1,5 litros, pico largo.' },
+  { id: 'c2',  nombre: 'Regadera verde',           categoria: 'Cuidado',   precio: 7990,  foto: 'https://images.unsplash.com/photo-1598511506218-6d74c23c862f', descripcion: 'Liviana y resistente, 1 litro.' }
+];
+/* ============================================================ */
+</script>
+
+<a class="demo" href="index.html">Página de ejemplo hecha por Eliot Ibacache · ¿Quieres una tienda así? →</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#">Brote<span>.</span></a>
+    <button class="btn-carro" id="abrirCarro" aria-controls="carro" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.5L21 8H6"/></svg>
+      Carrito <span class="contador" id="contador">0</span>
+    </button>
+  </div>
+</header>
+<div class="sr" aria-live="polite" id="anuncio"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-txt">
+      <div class="etiqueta">Plantas de interior · Santiago</div>
+      <h1>Más verde en casa, sin complicarte.</h1>
+      <p>Plantas resistentes, maceteros y todo para cuidarlas. Arma tu pedido y te lo confirmamos por WhatsApp.</p>
+      <div class="ventajas"><span>Despacho gratis sobre $40.000</span><span>Retiro en Ñuñoa</span><span>Guía de cuidado incluida</span></div>
+      <a class="cta" href="#catalogo">Ver productos</a>
+    </div>
+    <img class="hero-img" src="https://images.unsplash.com/photo-1646564486152-f8aebd96f4e6?auto=format&fit=crop&w=1200&q=70" alt="Puerta verde rodeada de plantas en maceteros">
+  </div>
+</section>
+
+<section id="catalogo">
+  <div class="wrap">
+    <div class="cat-head">
+      <h2>Catálogo</h2>
+      <div class="filtros" id="filtros" role="group" aria-label="Filtrar por categoría"></div>
+    </div>
+    <div class="grilla" id="grilla"></div>
+  </div>
+</section>
+
+<section class="info">
+  <div class="wrap info-grid">
+    <div class="info-item"><strong>1. Arma tu carrito</strong><span>Elige productos y cantidades. El carrito se guarda aunque cierres la página.</span></div>
+    <div class="info-item"><strong>2. Envía el pedido</strong><span>Te llega a WhatsApp con el detalle y el total, listo para confirmar.</span></div>
+    <div class="info-item"><strong>3. Paga y recibe</strong><span>Coordinamos pago por transferencia o link y la entrega o retiro.</span></div>
+  </div>
+</section>
+
+<footer>© 2026 Brote · Tienda de ejemplo hecha por <a href="index.html">Eliot Ibacache</a> · Fotos de Unsplash</footer>
+
+<div class="velo" id="velo"></div>
+<aside class="carro" id="carro" role="dialog" aria-modal="true" aria-labelledby="carroTitulo" aria-hidden="true">
+  <div class="carro-head">
+    <h2 id="carroTitulo">Tu carrito</h2>
+    <button class="cerrar" id="cerrarCarro" aria-label="Cerrar carrito">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="carro-items" id="items"></div>
+  <form class="carro-pie" id="formPedido" novalidate>
+    <fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
+      <legend class="leyenda">Entrega</legend>
+      <div class="entrega">
+        <label><input type="radio" name="entrega" value="despacho" checked> Despacho</label>
+        <label id="opRetiro"><input type="radio" name="entrega" value="retiro"> Retiro</label>
+      </div>
+    </fieldset>
+    <div class="campo"><label for="nombre">Tu nombre</label><input id="nombre" autocomplete="name" required></div>
+    <div class="campo" id="campoDir"><label for="direccion">Dirección y comuna</label><input id="direccion" autocomplete="street-address"></div>
+    <div class="campo"><label for="notas">Comentarios (opcional)</label><textarea id="notas" rows="2"></textarea></div>
+    <div class="totales">
+      <div><span>Subtotal</span><span id="subtotal">$0</span></div>
+      <div><span>Entrega</span><span id="costoEntrega">$0</span></div>
+      <div class="total"><span>Total</span><span id="total">$0</span></div>
+    </div>
+    <div class="nota" id="notaDespacho"></div>
+    <div class="enviar-zona">
+      <div class="error" id="error" role="alert"></div>
+      <button class="enviar" id="enviar" type="submit" style="width:100%">Enviar pedido por WhatsApp</button>
+    </div>
+  </form>
+</aside>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const clp = n => new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(n);
+  const foto = (url, w) => url.includes('?') ? url : url + '?auto=format&fit=crop&w=' + w + '&q=70';
+  const CLAVE = 'carrito-' + TIENDA.nombre.toLowerCase();
+  const porId = Object.fromEntries(PRODUCTOS.map(p => [p.id, p]));
+
+  // Carrito guardado en el navegador del visitante
+  let carro = {};
+  try { carro = JSON.parse(localStorage.getItem(CLAVE)) || {}; } catch (e) { carro = {}; }
+  for (const id in carro) if (!porId[id] || !(carro[id] > 0)) delete carro[id];
+  const guardar = () => { try { localStorage.setItem(CLAVE, JSON.stringify(carro)); } catch (e) {} };
+
+  // Filtros por categoría
+  const categorias = ['Todo', ...new Set(PRODUCTOS.map(p => p.categoria))];
+  let filtro = 'Todo';
+  function pintarFiltros() {
+    $('filtros').innerHTML = categorias.map(c =>
+      `<button class="filtro" type="button" data-cat="${c}" aria-pressed="${c === filtro}">${c}</button>`).join('');
+  }
+  $('filtros').addEventListener('click', e => {
+    const b = e.target.closest('.filtro'); if (!b) return;
+    filtro = b.dataset.cat; pintarFiltros(); pintarGrilla();
+  });
+
+  // Catálogo
+  function pintarGrilla() {
+    const lista = PRODUCTOS.filter(p => filtro === 'Todo' || p.categoria === filtro);
+    $('grilla').innerHTML = lista.map(p => `
+      <article class="prod">
+        <img src="${foto(p.foto, 600)}" alt="${p.nombre}" loading="lazy">
+        <div class="prod-cuerpo">
+          <div class="prod-cat">${p.categoria}</div>
+          <h3>${p.nombre}</h3>
+          <p>${p.descripcion}</p>
+          <div class="prod-pie">
+            <span class="precio">${clp(p.precio)}</span>
+            <button class="agregar" type="button" data-id="${p.id}" aria-label="Agregar ${p.nombre} al carrito">Agregar</button>
+          </div>
+        </div>
+      </article>`).join('');
+  }
+  $('grilla').addEventListener('click', e => {
+    const b = e.target.closest('.agregar'); if (!b) return;
+    const id = b.dataset.id;
+    carro[id] = (carro[id] || 0) + 1; guardar(); pintarCarro();
+    anunciar(porId[id].nombre + ' agregado al carrito');
+    b.textContent = 'Agregado ✓'; b.classList.add('ok');
+    setTimeout(() => { b.textContent = 'Agregar'; b.classList.remove('ok'); }, 1100);
+  });
+
+  // Cálculos
+  const entrega = () => document.querySelector('input[name="entrega"]:checked').value;
+  function totales() {
+    const sub = Object.entries(carro).reduce((s, [id, n]) => s + porId[id].precio * n, 0);
+    let envio = 0;
+    if (entrega() === 'despacho' && sub > 0) {
+      envio = TIENDA.despachoGratisDesde && sub >= TIENDA.despachoGratisDesde ? 0 : TIENDA.despacho;
+    }
+    return { sub, envio, total: sub + envio };
+  }
+
+  // Panel del carrito
+  function pintarCarro() {
+    const ids = Object.keys(carro);
+    const unidades = ids.reduce((s, id) => s + carro[id], 0);
+    $('contador').textContent = unidades;
+    $('items').innerHTML = ids.length ? ids.map(id => {
+      const p = porId[id];
+      return `<div class="item">
+        <img src="${foto(p.foto, 160)}" alt="">
+        <div class="item-info">
+          <div class="item-fila"><span class="item-nombre">${p.nombre}</span><span>${clp(p.precio * carro[id])}</span></div>
+          <div class="item-fila">
+            <div class="cant">
+              <button type="button" data-menos="${id}" aria-label="Quitar uno de ${p.nombre}">−</button>
+              <span>${carro[id]}</span>
+              <button type="button" data-mas="${id}" aria-label="Agregar uno de ${p.nombre}">+</button>
+            </div>
+            <button type="button" class="quitar" data-quitar="${id}">Quitar</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('') : '<div class="vacio">Tu carrito está vacío.<br>Agrega productos desde el catálogo.</div>';
+
+    const t = totales();
+    $('subtotal').textContent = clp(t.sub);
+    $('costoEntrega').textContent = entrega() === 'retiro' ? 'Gratis' : (t.sub && t.envio === 0 ? 'Gratis' : clp(t.envio));
+    $('total').textContent = clp(t.total);
+    const falta = TIENDA.despachoGratisDesde - t.sub;
+    $('notaDespacho').textContent = entrega() === 'despacho'
+      ? (TIENDA.despachoGratisDesde && falta > 0 && t.sub > 0 ? `Te faltan ${clp(falta)} para despacho gratis · ${TIENDA.zonaDespacho}` : `Despacho a ${TIENDA.zonaDespacho}`)
+      : `Retiro en ${TIENDA.retiro}. Te avisamos cuando esté listo.`;
+    $('campoDir').classList.toggle('oculto', entrega() === 'retiro');
+    $('enviar').disabled = !ids.length;
+  }
+  $('items').addEventListener('click', e => {
+    const t = e.target.closest('button'); if (!t) return;
+    const { mas, menos, quitar } = t.dataset;
+    if (mas) carro[mas]++;
+    if (menos) { carro[menos]--; if (carro[menos] <= 0) delete carro[menos]; }
+    if (quitar) delete carro[quitar];
+    guardar(); pintarCarro();
+  });
+  document.querySelectorAll('input[name="entrega"]').forEach(r => r.addEventListener('change', pintarCarro));
+  if (!TIENDA.retiro) $('opRetiro').classList.add('oculto');
+
+  // Abrir y cerrar
+  let ultimoFoco = null;
+  function abrir() {
+    ultimoFoco = document.activeElement;
+    $('carro').classList.add('abierto'); $('velo').classList.add('abierto');
+    $('carro').setAttribute('aria-hidden', 'false'); $('abrirCarro').setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => $('cerrarCarro').focus(), 50);
+  }
+  function cerrar() {
+    $('carro').classList.remove('abierto'); $('velo').classList.remove('abierto');
+    $('carro').setAttribute('aria-hidden', 'true'); $('abrirCarro').setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    if (ultimoFoco) ultimoFoco.focus();
+  }
+  $('abrirCarro').addEventListener('click', abrir);
+  $('cerrarCarro').addEventListener('click', cerrar);
+  $('velo').addEventListener('click', cerrar);
+  $('carro').addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
+
+  // Enviar pedido por WhatsApp
+  $('formPedido').addEventListener('submit', e => {
+    e.preventDefault();
+    const nombre = $('nombre').value.trim();
+    const dir = $('direccion').value.trim();
+    const esDespacho = entrega() === 'despacho';
+    if (!nombre) { $('error').textContent = 'Escribe tu nombre para enviar el pedido.'; $('nombre').focus(); return; }
+    if (esDespacho && !dir) { $('error').textContent = 'Escribe tu dirección para el despacho.'; $('direccion').focus(); return; }
+    $('error').textContent = '';
+    const t = totales();
+    const lineas = Object.entries(carro).map(([id, n]) => `• ${n} x ${porId[id].nombre} — ${clp(porId[id].precio * n)}`);
+    const msg = [
+      TIENDA.demo ? '(Pedido de prueba desde la demo de Eliot)' : null,
+      `Hola ${TIENDA.nombre}, quiero hacer este pedido:`, '',
+      ...lineas, '',
+      `Subtotal: ${clp(t.sub)}`,
+      esDespacho ? `Despacho: ${t.envio ? clp(t.envio) : 'gratis'}` : `Retiro en ${TIENDA.retiro}`,
+      `Total: ${clp(t.total)}`, '',
+      `Nombre: ${nombre}`,
+      esDespacho ? `Dirección: ${dir}` : null,
+      $('notas').value.trim() ? `Comentarios: ${$('notas').value.trim()}` : null
+    ].filter(l => l !== null).join('\n');
+    window.open(`https://wa.me/${TIENDA.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  });
+
+  function anunciar(txt) { $('anuncio').textContent = ''; setTimeout(() => { $('anuncio').textContent = txt; }, 30); }
+
+  pintarFiltros(); pintarGrilla(); pintarCarro();
+})();
+</script>
+</body>
+</html>
